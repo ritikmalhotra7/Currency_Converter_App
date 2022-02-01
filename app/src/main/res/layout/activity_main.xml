@@ -11,15 +11,14 @@
         android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         android:text="Currency Converter"
         android:textSize="35sp"
         android:textStyle="bold"
+        android:textAlignment="center"
         app:layout_constraintBottom_toTopOf="@+id/guideline"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
-        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -47,7 +46,8 @@
         app:layout_constraintBottom_toBottomOf="@+id/spFromCurrency"
         app:layout_constraintEnd_toStartOf="@+id/spFromCurrency"
         app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintHorizontal_weight="2"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/spFromCurrency">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -71,8 +71,9 @@
         android:layout_height="wrap_content"
         android:entries="@array/currency_codes"
         android:padding="15dp"
+        app:layout_constraintStart_toEndOf="@id/tilFrom"
+        app:layout_constraintHorizontal_weight="3"
         app:layout_constraintEnd_toStartOf="@+id/spToCurrency"
-        app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintTop_toBottomOf="@+id/tvFrom" />
 
     <Spinner
@@ -81,9 +82,11 @@
         android:layout_height="wrap_content"
         android:entries="@array/currency_codes"
         android:padding="15dp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintTop_toBottomOf="@+id/tvTo" />
+        app:layout_constraintStart_toEndOf="@id/spFromCurrency"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvTo"
+        tools:layout_editor_absoluteX="274dp" />
 
     <Button
         android:id="@+id/btnConvert"
@@ -91,8 +94,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="Convert"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/spToCurrency" />
+        app:layout_constraintTop_toBottomOf="@+id/spToCurrency"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="50dp"/>
 
     <TextView
         android:id="@+id/tvResult"
@@ -103,7 +107,7 @@
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="@+id/btnConvert"
         app:layout_constraintEnd_toStartOf="@+id/btnConvert"
-        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/btnConvert"
         tools:text="10 EUR = 15.0 USD" />
 
@@ -114,7 +118,7 @@
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@+id/btnConvert"
         app:layout_constraintEnd_toStartOf="@+id/btnConvert"
-        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintStart_toStartOf="@+id/tvResult"
         app:layout_constraintTop_toTopOf="@+id/btnConvert"
         tools:visibility="visible" />
 
@@ -123,13 +127,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.9" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.1" />
+        app:layout_constraintGuide_begin="218dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

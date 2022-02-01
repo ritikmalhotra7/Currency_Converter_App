@@ -31,19 +31,24 @@ class MainViewModel @Inject constructor(
             _conversion.value = CurrencyEvent.Failure("Not a valid amount")
             return
         }
+        Log.d("viewModel",amountValue.toString())
 
         viewModelScope.launch(dispatchers.io) {
             _conversion.value = CurrencyEvent.Loading
             when(val response = repo.get("${from}_$to")){
-                is Resources.Error -> _conversion.value = CurrencyEvent.Failure(response.message!!)
+                is Resources.Error ->{
+                    _conversion.value = CurrencyEvent.Failure(response.message!!)
+                    Log.d("viewModel","${from}_$to")
+                }
                 is Resources.Sucess ->{
+                    Log.d("viewModel","${from}_$to")
                     val rate = response.data!!.fromTo
-                    Log.d("taget",response.data!!.fromTo.toString())
+                    Log.d("viewModel",response.data!!.fromTo.toString())
                     if(rate == null){
                         _conversion.value = CurrencyEvent.Failure("Unexpected Errors")
                     }else{
                         val  resultCurrency = round(amountValue * rate * 100) / 100
-                        _conversion.value = CurrencyEvent.Sucess("$resultCurrency $from = $amountValue $to")
+                        _conversion.value = CurrencyEvent.Sucess("$resultCurrency $to = $amountValue $from")
                     }
                 }
             }
